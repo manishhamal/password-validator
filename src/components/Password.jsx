@@ -5,21 +5,33 @@ const Password = () => {
   const [errorMsg, setErrorMsg] = useState("");
 
   const checkValid = (e) => {
-    setValue(e.target.value);
+    setValue(e.target.value.trim());
     console.log(value);
-    if (
-      validator.isStrongPassword(value, {
-        minLength: 8,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
-      })
-    ) {
-      setErrorMsg("Strong Password");
-    } else {
-      setErrorMsg("Weak Password");
-    }
+    alert(value.length);
+    value.length > 3
+      ? validator.isStrongPassword(value, {
+          minLength: 8,
+          minLowercase: 1,
+          minUppercase: 1,
+          minNumbers: 1,
+          minSymbols: 1,
+        })
+        ? setErrorMsg("Strong Password")
+        : setErrorMsg("Weak Password")
+      : setErrorMsg("");
+    // if (
+    //   validator.isStrongPassword(value, {
+    //     minLength: 8,
+    //     minLowercase: 1,
+    //     minUppercase: 1,
+    //     minNumbers: 1,
+    //     minSymbols: 1,
+    //   })
+    // ) {
+    //   setErrorMsg("Strong Password");
+    // } else {
+    //   setErrorMsg("Weak Password");
+    // }
   };
 
   return (
